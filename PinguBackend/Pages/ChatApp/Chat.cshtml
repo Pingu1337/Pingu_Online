@@ -1,0 +1,332 @@
+﻿@page
+@using Microsoft.AspNetCore.Identity
+@using xPingu.SharedLib.UserData.Data
+@model PinguBackend.Pages.ChatModel
+@inject UserManager<PinguUser> UserManager
+
+@{
+}
+
+<div class="container">
+
+    <div class="row">
+        @*input hidden but still holds the value*@
+        <input type="text" id="userInput" class="username" value="@UserManager.GetUserName(User)" readonly>
+        @*username is displayed here*@
+        
+    </div>
+</div>
+    
+<div class="row">
+    
+    <div class="col-6">
+        <div class="chatbg">
+            <ul class="msgbox" id="messagesList">
+            </ul>
+        </div>
+    </div>
+</div>
+<form name="chatForm" onsubmit="DoSubmit(); return false;">
+    <div class="row">
+        
+        <div class="col-4">
+            <div class="msginput">
+                <div class="ttip">
+
+
+                    <input class="message" name="chatMessage" type="text" id="messageInput" autocomplete="off" value="" />
+                    <span id="ttiptext" class="tooltiptext">Message cannot be empty</span>
+                </div>
+                @*<input class="sendButton" type="submit" id="sendButton" value="Send Message" onclick="DoSubmit()" />*@
+                <button class="sendButton" type="submit" id="sendButton" value="Send Message" onclick="DoSubmit()"><i class="fas fa-paper-plane"></i></button>
+                <button class="plusButton" type="button"  onclick="PlusSign()" ><i class="fas fa-plus"></i></button>
+                <div class="add" id="add">
+                    <a class="addContainer" style="cursor: pointer;" onclick="PlusSign1()">
+                        <i id="addIcon" class="fas fa-images"></i>
+                        <i id="addIcon" class="fas fa-camera"></i>
+                        <i id="addIcon"  class="fas fa-icons"></i>
+                        <i id="addIcon" class="fas fa-file-upload"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<style>
+
+    .add {
+        display: none;
+        position: absolute;
+        width: 100px;
+        height: 80px;
+        border-radius: 30px;
+        margin-top: -46px;
+        background: rgba(255,255,255,.1);
+        border: 1px solid rgba(255,255,255,.2);
+        box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
+        padding: 15px;
+        backdrop-filter: blur(12.5px);
+        -webkit-backdrop-filter: blur(12.5px);
+        margin-left: 248px;
+    }
+    #addIcon {
+        padding: 1px;
+        color: rgba(252, 165, 221, .7);
+    }
+
+    .plusButton:active {
+        outline: none;
+        border-color: rgba(255, 255, 255, .8);
+    }
+    .plusButton:focus {
+        outline: none;
+    }
+    .plusButton {
+        outline: none;
+        background: rgba(255,255,255,.2);
+        border: 1px solid rgba(255,255,255,.4);
+        border-radius: 20px;
+        box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
+        height: 30px;
+        width: auto;
+        backdrop-filter: blur(12.5px);
+        -webkit-backdrop-filter: blur(12.5px);
+        margin-left: 5px;
+        
+    }
+    .sendButton {
+        background: rgba(255,255,255,.2);
+        border: 1px solid rgba(255,255,255,.4);
+        border-radius: 20px;
+        box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
+        height: 30px;
+        width: auto;
+        backdrop-filter: blur(12.5px);
+        -webkit-backdrop-filter: blur(12.5px);
+        margin-left: 5px;
+        
+    }
+    .sendButton:active {
+        outline: none;
+        border-color: rgba(255, 255, 255, .7);
+    }
+    .fa-paper-plane {
+        color: rgba(252, 165, 221, .7);
+    }
+    .fa-plus {
+        color: rgba(252, 165, 221, .7);
+    }
+    .message {
+        background: rgba(255,255,255,.1);
+        border: 1px solid rgba(255,255,255,.2);
+        border-radius: 15px;
+        box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
+        height: 30px;
+        padding: 15px;
+        backdrop-filter: blur(12.5px);
+        -webkit-backdrop-filter: blur(12.5px);
+        width: 100%;
+    }
+    .msginput {
+        margin-top: -50px;
+        display: flex;
+        border-radius: 16px;
+        background: linear-gradient(90deg, rgba(252,165,221,.3) 59%, rgba(11,227,225,.3) 59%);
+        padding: 5px;
+        box-shadow: 7px 5px 5px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(12.5px);
+        -webkit-backdrop-filter: blur(12.5px);
+        margin-right: 50px;
+    }
+    .message:focus {
+        outline: none;
+        outline-width: .5px;
+        outline-color: rgba(255,255,255,.4);
+        border-color: rgba(255, 255, 255, .4);
+    }
+    /* width */
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 0px grey;
+        border-radius: 10px;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: rgba(255,255,255,.2); 
+        border: 1px solid rgba(255,255,255,.4);
+        border-radius: 10px;
+        /*box-shadow: 1px 1px 2px rgba(0,0,0,.1);*/
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: rgba(255,255,255,.4);
+        border-color:rgba(255,255,255,.6);
+    }
+
+    .chatbg {
+        height: 515px;
+        background: linear-gradient(90deg, rgba(11,227,225,.5) 59%, rgba(252,165,221,.5) 59%);
+        border-radius: 15px;
+        box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
+        
+    }
+
+    .msgbox {
+        height: 515px;
+        background: rgba(255,255,255,0.1);
+        padding: 30px;
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 15px;
+        overflow-y: auto;
+    }
+
+    .msgbox li {
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 16px;
+        box-shadow: 7px 5px 5px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(12.5px);
+        -webkit-backdrop-filter: blur(12.5px);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        margin: 20px;
+        padding: 15px;
+        margin-bottom: 30px;
+    }
+    ul {
+        list-style: none
+    }
+
+    @@media screen and (max-width: 600px) {
+
+        #addIcon {
+            color: rgba(11, 227, 225, .5);
+        }
+        .add {
+            margin-left: 200px;
+        }
+        .chatbg {
+            width: 100%;
+        }
+        .msgbox {
+            width: 100%;
+            padding: 10px;
+        }
+        .msgbox li {
+
+        }
+        .row {
+            display: block;
+        }
+        .col-6 {
+            max-width: 100%;
+        }
+        .msginput {
+            margin-right: 100px;
+            margin-left: 5px;
+        }
+        .col-4 {
+            
+            max-width: 100%;
+        }
+        
+    }
+</style>
+
+
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/chat.js"></script>
+
+<script language="javascript">
+
+    function PlusSign() {
+        document.getElementById("add").style.display = "block";
+        return true;
+    }
+    function PlusSign1() {
+        document.getElementById("add").style.display = "none";
+        return true;
+    }
+
+    function delay(time) {
+        return new Promise(resolve => setTimeout(resolve, time));
+    }
+
+    function scrollToBottom() {
+        var chatDiv = document.getElementsByClassName('msgbox')[0]; //I assume you only have one chat box!
+        delay(100).then(() =>
+            chatDiv.scrollTo(0, chatDiv.scrollHeight));
+
+    }
+
+    function DoSubmit() {
+
+        delay(10).then(()=> 
+            document.getElementById('messageInput').value = '');
+        document.getElementById("sendButton").disabled = true;
+        delay(500).then(() =>
+        document.getElementById("sendButton").disabled = false);
+        scrollToBottom.call();
+        return false;
+    }
+</script>
+
+
+
+<style>
+
+    .message {
+        overflow-wrap: break-word;
+        word-break: break-word;
+        text-align: start;
+    }
+
+
+    .username {
+        display: none;
+    }
+
+    .ttip {
+        position: relative;
+        display: inline-block;
+    }
+
+    .ttip .tooltiptext {
+        visibility: hidden;
+        width: 200px;
+        background-color: #555;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 10px 5px;
+        position: absolute;
+        z-index: 1;
+        top: 125%;
+        left: 30%;
+        margin-left: -60px;
+        opacity: 0;
+        transition: opacity 0.5s;
+    }
+
+    .ttip .tooltiptext::after {
+        content: "";
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: transparent transparent #555 transparent;
+    }
+
+/*    .ttip:hover .tooltiptext {
+        visibility: visible;
+        opacity: 1;
+    }*/
+</style>

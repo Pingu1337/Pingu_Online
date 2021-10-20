@@ -1,0 +1,272 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+
+<div class="row">
+    <div class="col-md-4">
+        <h1 style="margin-top: 20px; ">@ViewData["Title"]</h1>
+        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <h4>Create a new account.</h4>
+            <hr/>
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Input.usrname"></label>
+                <input asp-for="Input.usrname" class="form-control"/>
+                <span asp-validation-for="Input.usrname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Email"></label>
+                <input asp-for="Input.Email" class="form-control"/>
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Password"></label>
+                <input asp-for="Input.Password" class="form-control"/>
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.ConfirmPassword"></label>
+                <input asp-for="Input.ConfirmPassword" class="form-control"/>
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary" style="margin-bottom: 20px">Register</button>
+        </form>
+    </div>
+    <div class="col-md-6 col-md-offset-2">
+        <section>
+            @{
+                if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                {
+
+                    <div id="c-card-0" class="content-card" style="margin-left: 0;">
+                        <div id="inside-c-card-0" class="inside-content-card">
+                            <h1 style="margin-top: auto; font-size: 4.9rem;">learn more by hovering this card</h1>
+                            <div class="card-button" style="padding-top: 10px; ">
+                                <h3 style="color: rgba(255, 255, 255, .7); text-align: center; margin: auto;">Secure user database with SQL</h3>
+                                <p class="card-text">
+                                    Before a new account can be created and stored in the database the user must confirm their email address<a class="informer" href="https://sendgrid.com/" target="_blank">(using SendGrid)</a>.<br />
+                                    This prevents the absolute worst bots from filling up your user database and makes it easier and more accurate to reach out to the user/users.<br />
+                                    Try the feature by creating a new account!
+                                </p>
+                                <a class="buttonContainer"  href="https://sendgrid.com/" target="_blank"><button class="funnybtn2">Learn More</button></a>
+                                <img class="cardbackground" width="250px" height="auto" src="~/img/icon.png" />
+                            </div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                        <div>
+                            <p>
+                                @foreach (var provider in Model.ExternalLogins)
+                                {
+                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                }
+                            </p>
+                        </div>
+                    </form>
+                }
+            }
+        </section>
+    </div>
+</div>
+
+<script type="text/javascript" src="/js/vanilla-tilt.js"></script>
+<script type="text/javascript" src="/js/vanilla-tilt.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+    var inside0 = document.querySelector("#inside-c-card-0 .card-button");
+    var inside = document.querySelector("#inside-c-card .card-button");
+    var inside1 = document.querySelector("#inside-c-card-1 .card-button");
+    let lastKnownScrollPosition = 0;
+    let ticking = false;
+
+    function doSomething(scrollPos) {
+        if (scrollPos < 300) {
+            inside0.style.opacity = 0,
+                inside0.style.transform = "translate(0px,400px)";
+        }
+        else {
+            inside0.style.opacity = 1,
+                inside0.style.transform = "translate(0px,0px)";
+        }
+    }
+
+
+    document.addEventListener('scroll', function (e) {
+        lastKnownScrollPosition = window.scrollY;
+
+        if (!ticking) {
+            window.requestAnimationFrame(function () {
+                doSomething(lastKnownScrollPosition);
+                ticking = false;
+            });
+
+            ticking = true;
+        }
+    });
+</script>
+
+<script>
+
+    VanillaTilt.init(document.querySelectorAll(".content-card"), {
+        max: 25,
+        speed: 400,
+        gyroscope: true,
+        glare: true,
+        "max-glare": .5,
+        "glare-pretender": true,
+        perspective: 1000,
+    });
+    var eventBox = document.querySelector(".content-card");
+    var funbutton = document.querySelector(".funnybtn2");
+    VanillaTilt.init(eventBox);
+
+    eventBox.addEventListener("tiltChange", function (event) {
+        const x = event.detail.tiltX;
+        const xs = (x - x * 2);
+        const y = event.detail.tiltY;
+        const ys = (y - y * 2);
+        const spread = 10;
+        const color = "rgba(0,0,0,.3)";
+
+        const parsed = parseInt(xs);
+        const parsedY = parseInt(ys);
+        if (parsed < 1 && parsed > -1) {
+
+            xblur = Math.abs(parsedY);
+
+        }
+
+        if (parsed > 0) {
+            xblur = parsed;
+            lborder = ".1";
+            Rborder = ".4";
+        } else {
+            xblur = Math.abs(parsed);
+            lborder = ".4";
+            Rborder = ".1";
+        }
+        if (parsedY > 0) {
+            Bborder = ".1";
+            Tborder = ".4";
+        } else {
+            Bborder = ".4";
+            Tborder = ".1";
+        }
+
+        const xspread = Math.abs(xblur) / 2;
+        const buttonblur = 10;
+        const bxs = (x - x * 2) / 2;
+        const bys = (parsedY - parsedY * 2) / 2;
+
+
+        eventBox.style.boxShadow = xs + "px " + y + "px " + xblur + "px rgba(0,0,0,.2)";
+
+        if (parsed > 0) {
+            eventBox.animate([
+                {
+                    borderRightColor: 'rgba(255, 255, 255, .3)',
+                    borderLeftColor: 'rgba(255, 255, 255, .1)'
+                }
+            ],
+                {
+                    easing: "ease-in-out",
+                    duration: 500,
+                    fill: "forwards"
+                });
+        } else {
+            eventBox.animate([
+                {
+                    borderRightColor: 'rgba(255, 255, 255, .1)',
+                    borderLeftColor: 'rgba(255, 255, 255, .3)'
+                },
+            ],
+                {
+                    easing: "ease-in-out",
+                    duration: 500,
+                    fill: "forwards"
+                });
+        }
+        if (parsedY > 0) {
+            eventBox.animate([
+                {
+                    borderBottomColor: 'rgba(255, 255, 255, .1)',
+                    borderTopColor: 'rgba(255, 255, 255, .3)'
+                },
+
+            ],
+                {
+                    easing: "ease-in-out",
+                    duration: 500,
+                    fill: "forwards"
+                });
+        } else {
+            eventBox.animate([
+                {
+                    borderBottomColor: 'rgba(255, 255, 255, .3)',
+                    borderTopColor: 'rgba(255, 255, 255, .1)'
+                }
+            ],
+                {
+                    easing: "ease-in-out",
+                    duration: 500,
+                    fill: "forwards"
+                });
+        }
+
+        funbutton.style.boxShadow = bxs + "px " + bys + "px " + buttonblur + "px " + "2" + "px rgba(0,0,0,.2)";
+    });
+
+
+    eventBox.addEventListener("mouseleave",
+        function () {
+            eventBox.style.boxShadow = "inset 13px 13px 10px rgba(0,0,0,.3), inset -13px -13px 10px rgba(255,255,255,.02)";
+            funbutton.style.boxShadow = "2px 2px 3px rgba(0, 0, 0, .3)";
+            funbutton.style.backgroundColor = "rgba(255,255,255, 0)";
+            funbutton.style.borderColor = "rgba(255,255,255, 0)";
+        });
+    eventBox.addEventListener("mouseleave",
+        function () {
+            eventBox.animate([
+                {
+                    borderColor: 'rgba(0, 0, 0, 0)',
+                }
+            ],
+                {
+                    easing: "ease-in-out",
+                    duration: 500,
+                    fill: "forwards"
+                });
+
+        });
+    funbutton.addEventListener("mouseenter",
+        function () {
+            funbutton.style.backgroundColor = "rgba(255,255,255, .05)";
+            funbutton.style.borderTopColor = "rgba(255,255,255, .2)";
+            funbutton.style.borderLeftColor = "rgba(255,255,255, .2)";
+            funbutton.style.borderBottomColor = "rgba(255,255,255, .1)";
+            funbutton.style.borderRightColor = "rgba(255,255,255, .1)";
+
+            funbutton.style.transition = ".3s";
+            sleep(150).then(() => { funbutton.style.transition = "0s"; });
+        });
+    funbutton.addEventListener("mouseleave",
+        function () {
+            funbutton.style.backgroundColor = "rgba(255,255,255, 0)";
+            funbutton.style.borderColor = "rgba(255,255,255, 0)";
+            funbutton.style.transition = ".3s";
+            sleep(150).then(() => { funbutton.style.transition = "0s"; });
+
+        });
+</script>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

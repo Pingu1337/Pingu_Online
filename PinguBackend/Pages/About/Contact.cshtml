@@ -1,0 +1,27 @@
+﻿@page
+@model PinguBackend.Pages.About.ContactModel
+@{
+    ViewData["Title"] = "Contact";
+}
+<head>
+    <link rel="stylesheet" href="~/css/AboutCss/about.css" />
+</head>
+
+<div id="contactpage" class="contact-content">
+    <div id="contact">
+        <h1 style="text-align: center; color: rgba(255, 255, 255, .8);">@ViewData["Title"]</h1>
+        <p class="card-text"> The best way to contact me is by sending me an email.</p>
+        <div class="contact-link">
+            <a href="mailto:contact@pingu.onl" target="_blank"><i style="color: rgba(255, 255, 255, .7);" class="far fa-envelope fa-3x"></i></a>
+            <p>Email: <a class="content-link" href="mailto:contact@pingu.onl" target="_blank">contact@pingu.onl</a> </p>
+        </div>
+        <p class="card-text" style="margin-top: 50px; ">You can also reach me on any of the social platforms below.</p>
+        <h3 style="color: rgba(255, 255, 255, .7); margin-top: 50px; text-align: center;">Social Links</h3>
+        <div id="social-links" style="margin-top: 30px; margin-left: 20%; margin-right: auto; ">
+            <a href="https://github.com/Pingu1337" target="_blank"><i class="fab fa-github fa-3x"></i></a>
+            <a href="https://twitter.com/PinguOnl" target="_blank"> <i class="fab fa-twitter fa-3x"></i></a>
+            <a href="https://www.linkedin.com/in/herman-brunberg-ab4123223" target="_blank"><i class="fab fa-linkedin fa-3x"></i></a>
+            <a href="mailto:contact@pingu.onl" target="_blank"><i class="far fa-envelope fa-3x"></i></a>
+        </div>
+    </div>
+</div>

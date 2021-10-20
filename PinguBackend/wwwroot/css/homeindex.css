@@ -1,0 +1,242 @@
+﻿body {
+    overflow: hidden;
+    background-color: rgba(231, 0, 138, .3);
+}
+
+
+#glasscard {
+    margin-top: 20px;
+    padding: 30px;
+    /*    background: rgba(100, 255, 255, .2);*/
+    background: rgba( 255, 255, 255, 0.2 );
+    backdrop-filter: blur( 5px );
+    -webkit-backdrop-filter: blur( 8.5px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, .3 );
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, .3);
+    /*    backdrop-filter: blur(20px);
+    */
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+}
+.bigCard {
+    margin-top: 20px;
+    padding: 30px;
+    background: rgba( 255, 255, 255, 0.2 );
+    backdrop-filter: blur( 5px );
+    -webkit-backdrop-filter: blur( 8.5px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, .3 );
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, .3);
+    height: 570px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    overflow: hidden;
+}
+.smallCard {
+    margin: 20px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    padding: 5px;
+    background: rgba( 255, 255, 255, 0 );
+/*    backdrop-filter: blur( 5px );
+    -webkit-backdrop-filter: blur( 8.5px );*/
+   
+    border: 1px solid rgba( 255, 255, 255, .3 );
+    box-shadow: 5px 5px 5px inset rgba(0, 0, 0, .3);
+    height: 230px;
+    width: 100%;
+    overflow: hidden;
+}
+.smallBottomCard {
+    margin: 20px;
+    margin-top: 0px;
+    padding: 5px;
+    /*background: rgba( 255, 255, 255, 0 );*/
+    /*    backdrop-filter: blur( 5px );
+    -webkit-backdrop-filter: blur( 8.5px );*/
+
+    border: 1px solid rgba( 255, 255, 255, .3 );
+    box-shadow: 5px 5px 5px inset rgba(0, 0, 0, .3);
+    height: 250px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.insideSmallCard {
+    margin: auto;
+    background: rgba( 255, 255, 255, 0.2 );
+/*    backdrop-filter: blur( .2px );
+    -webkit-backdrop-filter: blur( .2px );*/
+    
+    border: 1px solid rgba( 255, 255, 255, .3 );
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, .3);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+}
+.insideSmallCardTop {
+    margin: auto;
+    margin-bottom: 0;
+    background-image: url("/img/browserbar1.png");
+    background-size:cover;
+    /*    backdrop-filter: blur( .2px );
+    -webkit-backdrop-filter: blur( .2px );*/
+
+   /* border: 1px solid rgba( 255, 255, 255, .3 );*/
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, .3);
+    height: 28px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+}
+.cookieglasscard {
+    background: rgba(255,255,255,.1);
+    border-top: 1px solid rgba(255,255,255,.1);
+    border-left: 1px solid rgba(255,255,255,.1);
+    border-bottom: 1px solid rgba(255,255,255,0);
+    border-right: 1px solid rgba(255,255,255,0);
+    border-radius: 49px;
+    /*box-shadow: inset 13px 13px 10px #47008e, inset -13px -13px 10px rgba(88,0,174,.2);*/
+    box-shadow: 10px 10px 25px 10px rgba(0,0,0,.2);
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    /* transition: .5s;*/
+    overflow: auto;
+    display: block;
+    padding: 35px;
+    opacity: 1;
+    margin-top: 10px;
+    max-height: 650px;
+}
+
+.cardback {
+    left: 100px;
+    top: 50px;
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: rgba(231, 0, 138, .4);
+    clip-path: circle(50% at 50% 50%);
+    z-index: 0;
+    animation: balls 50s infinite alternate;
+}
+.cardback2 {
+    left: 100px;
+    top: 50px;
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: rgba(231, 0, 138, .4);
+    clip-path: circle(50% at 50% 50%);
+    z-index: -1;
+    animation: balls 50s infinite alternate-reverse;
+}
+.cardback3 {
+    left: 100px;
+    top: 50px;
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: rgba(231, 0, 138, .4);
+    clip-path: circle(50% at 50% 50%);
+    z-index: -1;
+    animation: balls 50s infinite alternate;
+}
+.cardback4 {
+    left: 100px;
+    top: 350px;
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    /*background: rgba(76, 0, 152, .9);*/
+    background-color: rgba(148, 0, 67, .4);
+    clip-path: circle(50% at 50% 50%);
+    z-index: 0;
+    animation: balls 50s infinite alternate;
+}
+
+@media screen and (min-width: 1800px) {
+    @keyframes balls {
+        from {
+            transform: translateX(0px);
+        }
+
+        to {
+            transform: translate(1250px,-150px)rotate(180deg);
+            background-color: rgba(76, 0, 152, .4)
+        }
+    }
+}
+
+
+
+
+.funnybtn {
+    background: rgba(255, 255, 255, .2);
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 16px;
+}
+.funnybtn:hover {
+    background: rgba(255, 255, 255, .3);
+    border-color: rgba(255,255,255,.5);
+}
+.funnybtn:active {
+        outline: none;
+        border-color: rgba(255,255,255,.7);
+}
+.funnybtn:focus {
+        outline: none;
+        border-color: rgba(255,255,255,.7);
+}
+.funnybtn:focus-visible {
+        outline: none;
+        border-color: rgba(255,255,255,.7);
+}
+
+@media screen and (max-width: 600px) {
+
+    @keyframes balls {
+        from {
+            transform: translateY(0px);
+        }
+
+        to {
+            transform: translateY(1000px)rotate(180deg);
+        }
+    }
+
+    .cardback4 {
+        width: 250px;
+        height: 250px;
+        left: 50px;
+    }
+
+    .smallBottomCard {
+        overflow: auto;
+        
+    }
+    .insideSmallCard {
+        overflow: auto;
+        display: block;
+        text-align: left;
+        word-wrap:break-word;
+    }
+    .viewportText {
+        display: block;
+        word-wrap: break-spaces;
+    }
+    .cookieglasscard {
+        max-height: 100%;
+    }
+}

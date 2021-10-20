@@ -1,0 +1,62 @@
+﻿@using Microsoft.AspNetCore.Http.Features
+
+@{
+    var consentFeature = Context.Features.Get<ITrackingConsentFeature>();
+    var showBanner = !consentFeature?.CanTrack ?? false;
+    var cookieString = consentFeature?.CreateConsentCookie();
+}
+
+@if (showBanner)
+{
+    <div id="cookieConsent" class="cookie alert alert-dismissible fade show" role="alert">
+        <p class="card-text" style="margin: auto; padding: 0;"><i class="fas fa-cookie-bite fa-lg" style="color:#BD8C61;"></i>  This website uses cookies to make your browsing experience better. By using this site you agree to our use of cookies. <a class="content-link" asp-page="/Privacy">Learn More</a></p>
+        <button type="button" class="accept-policy close" style="margin-left: 3px; position: relative; " data-dismiss="alert" aria-label="Close" data-cookie-string="@cookieString">
+            <span aria-hidden="true" style="color: rgba(255, 255, 255, 1); text-shadow: none; ">Accept</span>
+        </button>
+    </div>
+    <script>
+        (function () {
+            var button = document.querySelector("#cookieConsent button[data-cookie-string]");
+            button.addEventListener("click", function (event) {
+                document.cookie = button.dataset.cookieString;
+                getAccel();
+            }, false);
+        })();
+    </script>
+}
+
+<script>
+    function getAccel() {
+        DeviceMotionEvent.requestPermission().then(response => {
+                if (response == 'granted') {
+                    console.log("accelerometer permission granted");
+                }
+            });
+    }
+</script>
+
+<style>
+
+    /*class="alert alert-info alert-dismissible fade show"*/
+
+    .cookie {
+        background-color: rgba(255, 255, 255, .1);
+        border: 1px solid;
+        border-color: rgba(255,255,255,.2);
+        border-radius: 25px;
+        transition: 0.5s;
+        width: 70%;
+        margin-left: auto;
+        margin-right: auto;
+        margin: auto;
+        padding: 20px;
+        display: flex;
+    }
+    @@media screen and (max-width: 600px) 
+    {
+        .cookie {
+            width: 100%;
+        }
+
+    }
+</style>

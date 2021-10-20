@@ -1,0 +1,661 @@
+﻿@page
+@using xPingu.SharedLib.Data
+@using Newtonsoft.Json.Bson
+@using Microsoft.AspNetCore.Mvc.Razor
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+
+
+<div class="index-container">
+    <div class="cardback4">
+        <img style="width: 100%; opacity: .1;" width="100%" height="auto" src="~/img/icon.png" />
+    </div>
+    <div class="row mb-auto">
+        <div class="col-md-4">
+            <div class="row no-gutters">
+                <div id="c-card-0" class="content-card">
+                    <div id="inside-c-card-0" class="inside-content-card">
+                        <h1>pingu</h1>
+                        <div class="card-button">
+                            <h3 style="color: rgba(255, 255, 255, .7); text-align: center; margin: auto;">Welcome to pingu.onl</h3>
+                            <p class="card-text">
+                                <br />This website is a portfolio containing many of my <a style="font-style: italic">"website creating skills"</a>. <br /> Are you on the lookout for a new website? <a asp-page="/About/Index" class="content-link">check out my services</a>
+                                <br /> <br /> Or view some existing templates of what you can expect from my services <a asp-page="/Styles/Index" class="content-link">here</a>
+                            </p>
+                            <a class="buttonContainer" asp-page="/About/Index"><button class="funnybtn2">Learn More</button></a>
+                            <img class="cardbackground" width="250px" height="auto" src="~/img/icon.png" />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="row no-gutters">
+                <div id="c-card" class="content-card">
+                    <div id="inside-c-card" class="inside-content-card">
+                        <h1>dot</h1>
+                        <div class="card-button">
+                            <h3 style="color: rgba(255, 255, 255, .7); text-align: center; margin: auto;">Realtime chat app</h3>
+                            <p class="card-text mb-auto">
+                               <br/> Open up a second browser tab and chat with yourself in realtime! <br />
+                                Using JavaScript and SignalR you can make realtime interactions with the server.<br />
+                            </p>
+                            <a class="buttonContainer" asp-page="/ChatApp/Chat"><button id="funnybutton3" class="funnybtn2">Learn More</button></a>
+                            <img class="cardbackground" width="250px" height="auto" src="~/img/icon.png" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="row no-gutters">
+                <div id="c-card-1" class="content-card">
+                    <div id="inside-c-card-1" class="inside-content-card">
+                        <h1>onl</h1>
+                        <div class="card-button">
+                            <h3 style="color: rgba(255, 255, 255, .7); text-align: center; margin: auto;">SQL database</h3>
+                            <p class="card-text mb-auto">
+                                <br />See an example of implementing a SQL database to a web server.<br />
+                                <br />And with a few adjustments, it is updated with relevant data every hour.<br />
+                            </p>
+                            <a class="buttonContainer" asp-page="/WarcraftDB/Index"><button id="funnybutton4" class="funnybtn2">Learn More</button></a>
+                            <img class="cardbackground" width="250px" height="auto" src="~/img/icon.png"/>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+    var inside0 = document.querySelector("#inside-c-card-0 .card-button");
+    var inside = document.querySelector("#inside-c-card .card-button");
+    var inside1 = document.querySelector("#inside-c-card-1 .card-button");
+    let lastKnownScrollPosition = 0;
+    let ticking = false;
+
+    function doSomething(scrollPos) {
+        if (scrollPos > 300 && scrollPos < 800) {
+            inside0.style.opacity = 0,
+                inside0.style.transform = "translate(0px,400px)";
+            inside.style.opacity = 1,
+                inside.style.transform = "translate(0px,0px)";
+            inside1.style.opacity = 0,
+                inside1.style.transform = "translate(0px,400px)";
+        }
+        else {
+            inside0.style.opacity = 1,
+                inside0.style.transform = "translate(0px,0px)";
+            inside1.style.opacity = 1,
+                inside1.style.transform = "translate(0px,0px)";
+            inside.style.opacity = 0,
+                inside.style.transform = "translate(0px,400px)";
+        }
+    }
+
+
+    document.addEventListener('scroll', function(e) {
+        lastKnownScrollPosition = window.scrollY;
+
+        if (!ticking) {
+            window.requestAnimationFrame(function() {
+                doSomething(lastKnownScrollPosition);
+                ticking = false;
+            });
+
+            ticking = true;
+        }
+    });
+</script>
+
+
+<script>
+    function myFunction(x) {
+        if (x.matches) { // If media query matches
+
+            $(window).scroll(function() {
+                var scrollTop = $(this).scrollTop();
+
+                $('#c-card').css({
+                    opacity: function() {
+                        var elementHeight = $(this).height(),
+                            opacity = ((1 - (elementHeight - scrollTop) / elementHeight) * 1) + 0.2;
+                        if (opacity > 0.8) {
+                            $('#c-card-0').css({
+                                transition: '0.3s',
+                                opacity: 0,
+                            });
+                        };
+                        return opacity;
+                    }
+                });
+                $('.card-text').css({
+                    opacity: function() {
+                        var elementHeight = $(this).height(),
+                            opacity = ((1 - (elementHeight - scrollTop) / elementHeight) * 1) + 0.2;
+                        if (opacity > 0.8) {
+                            $('#c-card-0').css({
+                                transition: '0.3s',
+                                opacity: 0,
+                            });
+                        };
+                        return opacity;
+                    }
+                });
+            });
+
+            $(window).scroll(function() {
+                var scrollTop = $(this).scrollTop();
+
+                $('#c-card-0').css({
+                    opacity: function() {
+                        var elementHeight = $(this).height(),
+                            opacity = ((1 - (scrollTop) / elementHeight) * 1);
+
+                        if (opacity > 0.8) {
+                            $('#c-card').css({
+                                transition: '0.3s',
+                                opacity: 0,
+                            });
+                        };
+                        return opacity;
+                    }
+                });
+            });
+            $(window).scroll(function() {
+                var scrollTop = $(this).scrollTop();
+
+                $('#c-card-1').css({
+                    opacity: function() {
+                        var elementHeight = $(this).height(),
+                            opacity = ((1 - (elementHeight * 2 - scrollTop) / elementHeight) * 1);
+
+                        if (opacity > 0.8) {
+                            $('#c-card').css({
+                                transition: '0.3s',
+                                opacity: 0,
+                            });
+                        };
+                        return opacity;
+                    }
+                });
+            });
+        }
+    }
+    var x = window.matchMedia("(max-width: 600px)")
+    myFunction(x)
+</script>
+
+
+<script type="text/javascript" src="/js/vanilla-tilt.js"></script>
+<script>
+
+    VanillaTilt.init(document.querySelectorAll(".content-card"), {
+        max: 20,
+        speed: 300,
+        gyroscope: true,
+        glare: true,
+        "max-glare": .3,
+        transition: true,
+        // easing: "cubic-bezier(.03,.98,.52,.99)",
+        easing: "cubic-bezier(.25,.98,.52,.99)",
+        "glare-pretender": false,
+        perspective: 900,
+    });
+
+
+    VanillaTilt.init(document.querySelectorAll("#glasscard"), {
+        max: 25,
+        speed: 400,
+        gyroscope: true,
+        glare: true,
+        "max-glare": .8,
+        "glare-pretender": true,
+        perspective: 1000,
+        transition: true,
+    });
+    let destroyBox = document.querySelectorAll("#glasscard");
+    // VanillaTilt.init(destroyBox);
+
+
+    //var eventBox = document.querySelector(".glasscard");
+    var eventBox1 = document.querySelector("#c-card");
+    var eventBox2 = document.querySelector("#c-card-1");
+    var eventBox3 = document.querySelector(".glasscard3");
+    var eventBox = document.querySelector(".content-card");
+    let funbutton = document.querySelector(".funnybtn2");
+    let funbutton1 = document.querySelector("#funnybutton3");
+    let funbutton2 = document.querySelector("#funnybutton4");
+    let insidecard = document.querySelector(".inside-content-card");
+    let insidecard1 = document.querySelector("#inside-c-card");
+    let insidecard2 = document.querySelector("#inside-c-card-1");
+    let outputContainer = document.querySelector(".output");
+    //VanillaTilt.init(eventBox);
+
+    var box = eventBox;
+    eventBox.addEventListener("tiltChange", function (event) {
+        const x = event.detail.tiltX;
+        const xs = (x - x * 2);
+        const y = event.detail.tiltY;
+        const ys = (y - y * 2);
+        const spread = 10;
+        const color = "rgba(0,0,0,.3)";
+
+        const parsed = parseInt(xs);
+        const parsedY = parseInt(ys);
+        if (parsed < 1 && parsed > -1)  {
+
+            xblur = Math.abs(parsedY);
+
+        }
+
+        if (parsed > 0) {
+            xblur = parsed;
+            lborder = ".1";
+            Rborder = ".4";
+        } else {
+            xblur = Math.abs(parsed);
+            lborder = ".4";
+            Rborder = ".1";
+        }
+        if (parsedY > 0) {
+            Bborder = ".1";
+            Tborder = ".4";
+        } else {
+            Bborder = ".4";
+            Tborder = ".1";
+        }
+
+        const xspread = Math.abs(xblur) / 2;
+        const buttonblur = 10;
+        const bxs = (x - x * 2) / 2;
+        const bys = (parsedY - parsedY * 2) / 2;
+       
+
+        eventBox.style.boxShadow = xs + "px " + y + "px " + xblur + "px rgba(0,0,0,.2)";
+
+        if (parsed > 0) {
+            eventBox.animate([
+                    {
+                        borderRightColor: 'rgba(255, 255, 255, .3)',
+                        borderLeftColor: 'rgba(255, 255, 255, .1)' }
+                ],
+                {
+                    easing: "ease-in-out",
+                    duration: 500,
+                    fill: "forwards"
+                });
+        } else {
+            eventBox.animate([
+                    {
+                        borderRightColor: 'rgba(255, 255, 255, .1)',
+                        borderLeftColor: 'rgba(255, 255, 255, .3)'
+                    },
+                ],
+                {
+                    easing: "ease-in-out",
+                    duration: 500,
+                    fill: "forwards"
+                });
+        }
+        if (parsedY > 0) {
+            eventBox.animate([
+                    {
+                        borderBottomColor: 'rgba(255, 255, 255, .1)',
+                        borderTopColor: 'rgba(255, 255, 255, .3)'
+                    },
+                    
+                ],
+                {
+                    easing: "ease-in-out",
+                    duration: 500,
+                    fill: "forwards"
+                });
+        } else {
+            eventBox.animate([
+                    {
+                        borderBottomColor: 'rgba(255, 255, 255, .3)',
+                        borderTopColor: 'rgba(255, 255, 255, .1)'
+                    }
+                ],
+                {
+                    easing: "ease-in-out",
+                    duration: 500,
+                    fill: "forwards"
+                });
+        }
+
+        funbutton.style.boxShadow = bxs + "px " + bys + "px " + buttonblur + "px "+ "2" +"px rgba(0,0,0,.2)";
+    });
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+    eventBox.addEventListener("mouseleave",
+        function () {
+            eventBox.animate([
+                    {
+                        borderColor: 'rgba(0, 0, 0, 0)',
+                    }
+                ],
+                {
+                    easing: "ease-in-out",
+                    duration: 500,
+                    fill: "forwards"
+                });
+            
+        });
+
+    eventBox1.addEventListener("mouseleave",
+        function () {
+            eventBox1.animate([
+                    {
+                        borderColor: 'rgba(0, 0, 0, 0)',
+                    }
+                ],
+                {
+                    easing: "ease-in-out",
+                    duration: 500,
+                    fill: "forwards"
+                });
+            
+        });
+    eventBox2.addEventListener("mouseleave",
+        function () {
+            eventBox2.animate([
+                    {
+                        borderColor: 'rgba(0, 0, 0, 0)',
+                    }
+                ],
+                {
+                    easing: "ease-in-out",
+                    duration: 500,
+                    fill: "forwards"
+                });
+            
+        });
+
+    funbutton.addEventListener("mouseenter",
+        function() {
+            funbutton.style.backgroundColor = "rgba(255,255,255, .05)";
+            funbutton.style.borderTopColor = "rgba(255,255,255, .2)";
+            funbutton.style.borderLeftColor = "rgba(255,255,255, .2)";
+            funbutton.style.borderBottomColor = "rgba(255,255,255, .1)";
+            funbutton.style.borderRightColor = "rgba(255,255,255, .1)";
+            
+            funbutton.style.transition = ".3s";
+            sleep(150).then(() => { funbutton.style.transition = "0s"; });
+        });
+    funbutton.addEventListener("mouseleave",
+        function() {
+            funbutton.style.backgroundColor = "rgba(255,255,255, 0)";
+            funbutton.style.borderColor = "rgba(255,255,255, 0)";
+            funbutton.style.transition = ".3s";
+            sleep(150).then(() => { funbutton.style.transition = "0s";});
+            
+        });
+    //button'3'
+    funbutton1.addEventListener("mouseenter",
+        function() {
+            funbutton1.style.backgroundColor = "rgba(255,255,255, .05)";
+            funbutton1.style.borderTopColor = "rgba(255,255,255, .2)";
+            funbutton1.style.borderLeftColor = "rgba(255,255,255, .2)";
+            funbutton1.style.borderBottomColor = "rgba(255,255,255, .1)";
+            funbutton1.style.borderRightColor = "rgba(255,255,255, .1)";
+            
+            funbutton1.style.transition = ".3s";
+            sleep(150).then(() => { funbutton1.style.transition = "0s"; });
+        });
+    funbutton1.addEventListener("mouseleave",
+        function() {
+            funbutton1.style.backgroundColor = "rgba(255,255,255, 0)";
+            funbutton1.style.borderColor = "rgba(255,255,255, 0)";
+            funbutton1.style.transition = ".3s";
+            sleep(150).then(() => { funbutton1.style.transition = "0s";});
+            
+        });
+    //button'4'
+    funbutton2.addEventListener("mouseenter",
+        function() {
+            funbutton2.style.backgroundColor = "rgba(255,255,255, .05)";
+            funbutton2.style.borderTopColor = "rgba(255,255,255, .2)";
+            funbutton2.style.borderLeftColor = "rgba(255,255,255, .2)";
+            funbutton2.style.borderBottomColor = "rgba(255,255,255, .1)";
+            funbutton2.style.borderRightColor = "rgba(255,255,255, .1)";
+            
+            funbutton2.style.transition = ".3s";
+            sleep(150).then(() => { funbutton2.style.transition = "0s"; });
+        });
+    funbutton2.addEventListener("mouseleave",
+        function() {
+            funbutton2.style.backgroundColor = "rgba(255,255,255, 0)";
+            funbutton2.style.borderColor = "rgba(255,255,255, 0)";
+            funbutton2.style.transition = ".3s";
+            sleep(150).then(() => { funbutton2.style.transition = "0s";});
+            
+        });
+
+
+    eventBox.addEventListener("mouseleave",
+        function () {
+            insidecard.style.transition = "1s";
+            sleep(1000).then(() => { insidecard.style.transition = "0s"; });
+            eventBox.style.boxShadow = "inset 13px 13px 10px rgba(0,0,0,.3), inset -13px -13px 10px rgba(255,255,255,.02)";
+            funbutton.style.boxShadow = "2px 2px 3px rgba(0, 0, 0, .3)";
+            funbutton.style.backgroundColor = "rgba(255,255,255, 0)";
+            funbutton.style.borderColor = "rgba(255,255,255, 0)";
+
+
+        });
+    // glasscard 2
+    eventBox1.addEventListener("tiltChange", function (event) {
+        const x = event.detail.tiltX;
+        const xs = (x - x * 2);
+        const y = event.detail.tiltY;
+        const ys = (y - y * 2);
+        const spread = 10;
+        const color = "rgba(0,0,0,.3)";
+
+        const parsed = parseInt(xs);
+        const parsedY = parseInt(ys);
+        if (parsed < 1 && parsed > -1)  {
+
+            xblur = Math.abs(parsedY);
+
+        }
+
+        if (parsed > 0) {
+            xblur = parsed;
+        } else {
+            xblur = Math.abs(parsed);
+        }
+        const bxs = (x - x * 2) / 2;
+        const bys = (parsedY - parsedY * 2) / 2;
+
+        eventBox1.style.boxShadow = xs + "px " + y + "px " + xblur + "px rgba(0,0,0,.2)";
+        if (parsed > 0) {
+            eventBox1.animate([
+                    {
+                        borderRightColor: 'rgba(255, 255, 255, .3)',
+                        borderLeftColor: 'rgba(255, 255, 255, .1)' }
+                ],
+                {
+                    easing: "ease-in-out",
+                    duration: 500,
+                    fill: "forwards"
+                });
+        } else {
+            eventBox1.animate([
+                    {
+                        borderRightColor: 'rgba(255, 255, 255, .1)',
+                        borderLeftColor: 'rgba(255, 255, 255, .3)'
+                    },
+                ],
+                {
+                    easing: "ease-in-out",
+                    duration: 500,
+                    fill: "forwards"
+                });
+        }
+        if (parsedY > 0) {
+            eventBox1.animate([
+                    {
+                        borderBottomColor: 'rgba(255, 255, 255, .1)',
+                        borderTopColor: 'rgba(255, 255, 255, .3)'
+                    },
+                    
+                ],
+                {
+                    easing: "ease-in-out",
+                    duration: 500,
+                    fill: "forwards"
+                });
+        } else {
+            eventBox1.animate([
+                    {
+                        borderBottomColor: 'rgba(255, 255, 255, .3)',
+                        borderTopColor: 'rgba(255, 255, 255, .1)'
+                    }
+                ],
+                {
+                    easing: "ease-in-out",
+                    duration: 500,
+                    fill: "forwards"
+                });
+        }
+        funbutton1.style.boxShadow = bxs + "px " + bys + "px " + "10px " + "2" + "px rgba(0,0,0,.2)";
+    });
+    eventBox1.addEventListener("mouseleave",
+        function () {
+            insidecard1.style.transition = "1s";
+            sleep(1000).then(() => { insidecard1.style.transition = "0s"; });
+            eventBox1.style.boxShadow = "inset 13px 13px 10px rgba(0,0,0,.3), inset -13px -13px 10px rgba(255,255,255,.02)";
+
+        });
+
+    // glasscard3 
+    eventBox2.addEventListener("tiltChange", function (event) {
+        const x = event.detail.tiltX;
+        const xs = (x - x * 2);
+        const y = event.detail.tiltY;
+        const ys = (y - y * 2);
+        const spread = 10;
+        const color = "rgba(0,0,0,.3)";
+
+        const parsed = parseInt(xs);
+        const parsedY = parseInt(ys);
+        if (parsed < 1 && parsed > -1)  {
+
+            xblur = Math.abs(parsedY);
+
+        }
+
+        if (parsed > 0) {
+            xblur = parsed;
+            
+        } else {
+            xblur = Math.abs(parsed);
+        }
+
+        const bxs = (x - x * 2) / 2;
+        const bys = (parsedY - parsedY * 2) / 2;
+
+
+        if (parsed > 0) {
+            eventBox2.animate([
+                    {
+                        borderRightColor: 'rgba(255, 255, 255, .3)',
+                        borderLeftColor: 'rgba(255, 255, 255, .1)' }
+                ],
+                {
+                    easing: "ease-in-out",
+                    duration: 500,
+                    fill: "forwards"
+                });
+        } else {
+            eventBox2.animate([
+                    {
+                        borderRightColor: 'rgba(255, 255, 255, .1)',
+                        borderLeftColor: 'rgba(255, 255, 255, .3)'
+                    },
+                ],
+                {
+                    easing: "ease-in-out",
+                    duration: 500,
+                    fill: "forwards"
+                });
+        }
+        if (parsedY > 0) {
+            eventBox2.animate([
+                    {
+                        borderBottomColor: 'rgba(255, 255, 255, .1)',
+                        borderTopColor: 'rgba(255, 255, 255, .3)'
+                    },
+                    
+                ],
+                {
+                    easing: "ease-in-out",
+                    duration: 500,
+                    fill: "forwards"
+                });
+        } else {
+            eventBox2.animate([
+                    {
+                        borderBottomColor: 'rgba(255, 255, 255, .3)',
+                        borderTopColor: 'rgba(255, 255, 255, .1)'
+                    }
+                ],
+                {
+                    easing: "ease-in-out",
+                    duration: 500,
+                    fill: "forwards"
+                });
+        }
+
+        eventBox2.style.boxShadow = xs + "px " + y + "px " + xblur + "px rgba(0,0,0,.2)";
+        funbutton2.style.boxShadow = bxs + "px " + bys + "px " + "10px " + "2" + "px rgba(0,0,0,.2)";
+        
+    });
+    eventBox2.addEventListener("mouseleave",
+        function () {
+            insidecard2.style.transition = "1s";
+            sleep(1000).then(() => { insidecard2.style.transition = "0s"; });
+            eventBox2.style.boxShadow = "inset 13px 13px 10px rgba(0,0,0,.3), inset -13px -13px 10px rgba(255,255,255,.02)";
+        });
+
+
+    document.querySelector(".funnybtn").addEventListener("mouseenter", function () {
+        /*destroyBox.vanillaTilt.max(0);*/
+        document.querySelector(".glasscard").style.overflow = "visible";
+        document.querySelector(".funnybtn").style.maxWidth = "50%";
+        document.querySelector(".funnybtn").style.boxShadow = "12px 10px 5px rgba(0,0,0,.15)";
+    });
+
+    document.querySelector(".funnybtn").addEventListener("mouseleave", function () {
+        /*destroyBox.vanillaTilt.max(25);*/
+        document.querySelector(".glasscard").style.overflow = "hidden";
+        document.querySelector(".funnybtn").style.maxWidth = "50%";
+        document.querySelector(".funnybtn").style.boxShadow = "12px 10px 5px rgba(0,0,0,0)";
+    });
+
+    VanillaTilt.init(document.querySelector(".funnybtn2"), {
+        max: 10,
+        speed: 900,
+        scale: 1.5,
+    });
+    VanillaTilt.init(document.querySelectorAll(".funnybtnlink"), {
+        max: 0,
+        speed: 900,
+        scale: 1,
+        
+        transition:true,
+
+    });
+</script>

@@ -1,0 +1,154 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - pingu.onl</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/homeindex.css" />
+    <link rel="stylesheet" href="~/css/layoutheader.css" />
+    <link rel="stylesheet" href="~/css/neu/neu.css"/>
+    <script src="https://kit.fontawesome.com/14be2e1f18.js" crossorigin="anonymous"></script>
+    <!-- Global site tag () - Google AdSense -->
+    <script data-ad-client="ca-pub-4742215208436085" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JESDV6PT31"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-JESDV6PT31');
+    </script>
+</head>
+<body>
+<header>
+    <nav class="card-container">
+        <div class="card">
+            <div class="nav-left">
+                <a class="navhead-brand" asp-area="" asp-page="/Index"><img class="logo" width="70px" height="auto" src="~/img/icon.png" /></a>
+                @*<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>*@
+                <div class="nav-card" style="justify-content: space-between;">
+                    <ul id="navhead" class="navlist">
+                        <li class="nav-li">
+                            <a class="nav-link " asp-area="" asp-page="/About/Index">About</a>
+                        </li>
+                        <li class="nav-li">
+                            <a class="nav-link " asp-area="" asp-page="/About/Contact">Contact</a>
+                        </li>
+                        <li class="nav-li">
+                            <a class="nav-link " asp-area="" asp-page="/Styles/Index">Styles</a>
+                        </li>
+                        <li class="nav-li">
+                            <a class="nav-link " asp-area="" asp-page="/WarcraftDB/Index">Warcraft Stocks</a>
+                        </li>
+                        <li class="nav-li">
+                            <a class="nav-link " asp-area="" asp-page="/ChatApp/Chat">Chat</a>
+                        </li>
+
+                        <li class="nav-li dropli">
+                            <div id="drop" class="dropdown">
+                                <div class="nav-link dropbtn">
+                                    <i class="fas fa-ellipsis-h"></i>
+                                </div>
+                                <div class="dropdown-content">
+                                    <a class="nav-link " asp-area="" asp-page="/Templates/Index">Templates</a>
+                                    <a class="nav-link " asp-area="" asp-page="/Errors/404">404</a>
+                                    <a class="nav-link " asp-area="" asp-page="/Privacy">Privacy</a>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+                
+                <div id="toggler" class="nav-link dropbtn" onclick="classToggle()">
+                    <i class="fas fa-bars fa-2x"></i>
+                </div>
+
+            </div>
+            
+            
+            <div class="navlist-right">
+                <partial name="_LoginPartial"/>
+            </div>
+        </div>
+    </nav>
+</header>
+<div id="gyroscopeDiv" class="gyrotoggler">
+    <label id="gyroswitch" class="switch">
+        <input type="checkbox" />
+        <span class="slider round" onclick="getAccel()"></span>
+    </label>
+    <p class="toggle-text">Enable Gyroscope</p>
+</div>
+<div class="page-content">
+    <div class="page-inset">
+        <div class="container">
+        <partial name="_CookieConsentPartial" />
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    </div>
+</div>
+
+<footer class="border-top footer text-muted">
+    <div class="container">
+        <p class="card-text"> &copy; 2021 - pingu.onl - <a class="content-link" asp-area="" asp-page="/Privacy">Privacy</a></p>
+    </div>
+</footer>
+    
+    <!--NavBar Toggler for mobile devices-->
+<script>
+    function classToggle() {
+        const navs = document.querySelectorAll('.navlist');
+        const navcon = document.querySelectorAll('.card-container');
+        const crd = document.querySelectorAll('.card');
+  
+        navs.forEach(nav => nav.classList.toggle('nav-toggle'));
+        navcon.forEach(navc => navc.classList.toggle('navcon-toggle'));
+        crd.forEach(cards => cards.classList.toggle('card-toggle'));
+    }
+    document.querySelector('.Navbar__Link-toggle')
+        .addEventListener('click', classToggle);
+</script>
+    <!--Z-Index function for drop down menu -->
+<script>
+    var swt = document.getElementById("gyroswitch");
+    var drop = document.getElementById("drop");
+    drop.addEventListener('mouseenter',
+        function () {
+            swt.style.zIndex = -1;
+        });
+    drop.addEventListener('mouseleave',
+        function () {
+            swt.style.zIndex = 0;
+        });
+</script>
+
+<script>
+
+    var gyro = document.getElementById("gyroscopeDiv");
+
+    function getAccel() {
+        DeviceMotionEvent.requestPermission().then(response => {
+            if (response == 'granted') {
+                gyro.style.display = "none";
+                console.log("accelerometer permission granted");
+            }
+        });
+    }
+</script>
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+<script type="text/javascript" src="/js/vanilla-tilt.js"></script>
+@RenderSection("Scripts", required: false)
+</body>
+</html>

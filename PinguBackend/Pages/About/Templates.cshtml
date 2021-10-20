@@ -1,0 +1,101 @@
+﻿@page
+@model PinguBackend.Pages.About.TemplatesModel
+@{
+    ViewData["Title"] = "Templates";
+}
+@*<h1 style="text-align: center; color: rgba(255, 255, 255, .8);">@ViewData["Title"]</h1>*@
+<div id="template-page">
+    <div id="template-content">
+
+        <div id="slideshow">
+            <div>
+                <h2>Glassmorphism card style layout</h2>
+                <a asp-page="/Templates/Index"><img class="slideshow-image" src="~/img/template2.png"></a>
+                <a asp-page="/Templates/index"><h3 style="left: 5%;">Click the picture to read more about my designs</h3></a>
+               
+            </div>
+            <div class="slideshow-image">
+                <h2>Clean layout with collapsed mini sidebar</h2>
+                <a asp-page="/Templates/Index"><img class="slideshow-image" src="~/img/templatewow.png"></a>
+                <a asp-page="/Templates/index"><h3 style="left: 5%;">Click the picture to read more about my designs</h3></a>
+            </div>
+            <div class="slideshow-image">
+                <h2 style="color: rgba(0, 0, 0, .7); background: rgba(0, 0, 0, .1);">Lightweight layout with dark-mode toggle</h2>
+                <a asp-page="/Templates/index"><img class="slideshow-image" src="~/img/templatedev2.png"></a> 
+                <a asp-page="/Templates/index"><h3 style="left: 5%; color: rgba(0, 0, 0, .7); background: rgba(0, 0, 0, .1);">Click the picture to read more about my designs</h3></a>
+                
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<style>
+
+    #template-page {
+    }
+    #template-content {
+        padding: 5px;
+    }
+
+    #slideshow { 
+        margin: auto; 
+        position: relative; 
+        width: 100%; 
+        height: 650px; 
+        box-shadow: 0 0 20px rgba(0,0,0,0.4);
+        overflow: hidden;
+        border-radius: 25px;
+        box-shadow: 10px 10px 25px rgba(0, 0, 0, .3);
+    }
+
+        #slideshow > div {
+            position: absolute;
+
+        }
+    .slideshow-image {
+        width: auto;
+        height: auto;
+        object-fit: cover;
+    }
+    #slideshow h2 {
+        color: rgba(255, 255, 255, .7);
+        position: absolute;
+        top: 1%;
+        left: 30%;
+        text-align: center;
+        border: 0px solid rgba(255, 255, 255, .2);
+        padding: 15px;
+        background: rgba(255, 255, 255, .1);
+        border-radius: 50px;
+    }
+    #slideshow h3 {
+        color: rgba(255, 255, 255, .6);
+        position: absolute;
+        top: 60%;
+        left: 30%;
+        text-align: center;
+        border: 0px solid rgba(255, 255, 255, .2);
+        padding: 15px;
+        background: rgba(0, 0, 0, .2);
+        border-radius: 50px;
+    }
+
+</style>
+
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+<script>
+    $("#slideshow > div:gt(0)").hide();
+
+    setInterval(function() { 
+        $('#slideshow > div:first')
+            .fadeOut(2000)
+            .next()
+            .fadeIn(2000)
+            .end()
+            .appendTo('#slideshow');
+    }, 6000);
+</script>

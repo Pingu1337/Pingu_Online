@@ -1,0 +1,101 @@
+﻿@page
+@model PinguBackend.Pages.AboutModel
+@{
+    ViewData["Title"] = "About";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/AboutCss/about.css" />
+</head>
+
+<div id="aboutpage" class="aboutcontent">
+    <div id="aboutleft">
+    <h1 style="text-align: center; color: rgba(255, 255, 255, .8);">@ViewData["Title"]</h1>
+        <hr/>
+        <p>
+            This website is my personal portfolio. 
+            <br/> I'm a web-developer working on both frontend and backend solutions. 
+        </p>
+        <p>
+            If you are looking for a complete solution from back to front or if you are on the lookout for someone to make you a simple PHP site i got you covered.
+        </p>
+        <p>Read more about <a class="content-link" asp-page="/Styles/Index">My Designs</a> or view some of my live <a class="content-link" asp-page="/About/Templates">Templates</a></p>
+
+        <p>Have any questions or special requests? <a class="content-link" asp-page="/About/Contact">Get in touch</a></p> 
+        
+        <p >Find this project on <a class="content-link" href="https://github.com/Pingu1337/PinguDevelopment" target="_blank">GitHub</a></p>
+        
+        <h3 style=" color: rgba(255, 255, 255, .7); margin-top: 100px;">Social Links</h3>
+        <div id="social-links" style="margin-top: 30px;">
+            <a href="https://github.com/Pingu1337" target="_blank"><i class="fab fa-github fa-3x"></i></a>
+            <a href="https://twitter.com/PinguOnl" target="_blank"> <i class="fab fa-twitter fa-3x"></i></a>
+            <a href="https://www.linkedin.com/in/herman-brunberg-ab4123223" target="_blank"><i class="fab fa-linkedin fa-3x"></i></a>
+            <a href="mailto:contact@pingu.onl" target="_blank"><i class="far fa-envelope fa-3x"></i></a>
+        </div>
+    </div>
+    <div id="aboutservices">
+        <h3 style="text-align: center; color: rgba(255, 255, 255, .8);">My Services</h3>
+        <p >Websites can be developed in many different ways. Sometimes you need a large server backend to dynamically update your site, while in some other cases you just need a simple PHP site that displays some static information.</p>
+        <p> The services i provide include:</p>
+        <ul>
+            <li>Development of website from scratch (Backend and Frontend)</li>
+            <li>Frontend development with unique website design</li>
+            <li>Secure Backend development</li>
+            <li>Implementation of database in backend</li>
+            <li>Responsive design for all platforms</li>
+            <li>UX design</li>
+        </ul>
+        <p>Are you interested in my services or have any questions? <a class="content-link" asp-page="/About/Contact">Contact me</a> </p>
+        <p></p>
+        <p>Can't find what you are looking for in the list above? <a class="content-link" asp-page="/About/Contact">Make a request</a></p>
+        </div>
+    <div id="aboutright">
+        <h3 style="text-align: center; color: rgba(255, 255, 255, .8);">About me</h3>
+        
+        <p>I'm a 23 year old student currently studying web-development with focus on the .NET framework.</p>
+        <p>Aside from my studies im a frontend designer and developer that puts a lot of time into my stylesheets and a C#/JavaScript backend engineer.</p>
+        <div id="aboutskills">
+            <h4 style="color: rgba(255, 255, 255, .8); margin-bottom: 20px;">Programming Qualifications</h4>
+            <div class="list-container">
+                <div class="listofskills">
+                    <p>Programming:</p>
+                    <ul>
+                        <li>ASP.NET Core</li>
+                        <li>.NET Core</li>
+                        <li>C#</li>
+                        <li>HTML/CSS</li>
+                        <li>JavaScript</li>
+                        <li>PHP</li>
+                        <li>SQL</li>
+                    </ul>
+                </div>
+                <div class="listofskills">
+                    <p>Systems:</p>
+                    <ul>
+                        <li>Windows</li>
+                        <li>Microsoft Azure</li>
+                        <li>Linux</li>
+                    </ul>
+                    <p>Databases:</p>
+                    <ul>
+                        <li>SQL</li>
+                        <li>FTP/SFTP</li>
+                    </ul>
+                </div>
+                <div class="listofskills">
+                    <p>Familiar with:</p>
+                    <ul>
+                        <li>Python</li>
+                        <li>Open CV</li>
+                        <li>Lua</li>
+                        <li>SSH</li>
+                        <li>C++</li>
+                        <li>Web Hosting<br/> (ASP.NET and PHP)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

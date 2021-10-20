@@ -1,0 +1,345 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+.navbar nav {
+    justify-content: space-between;
+}
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+    background: url(/svg/wave.svg);
+    background-size: cover;
+}
+.footer {
+    background: rgba(255, 255, 255, 0.1);
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px; /* Vertically center the text there */
+    border-top: 1px solid rgba(255, 255, 255, .1) !important;
+}
+
+.container {
+    /*This is the footer*/
+    color: rgba(0, 0, 0, 1);
+}
+.bg-white {
+    background: rgba(255, 255, 255, .3) !important;
+    backdrop-filter: blur(4px);
+}
+.border-bottom {
+    border-bottom: 1px solid rgba(255, 255, 255, .3) !important;
+}
+
+.table {
+    background: rgba(255, 255, 255, .1);
+    border: 1px solid rgba(255, 255, 255, .3) !important;
+    border-radius: 15px;
+    overflow: hidden;
+    color: rgba(255, 255, 255, .7);
+    min-width: 100%;
+}
+.table tbody {
+    border-radius: 15px;
+}
+    .table thead th {
+        border-bottom: 1px solid rgba(255, 255, 255, .3) !important;
+    }
+
+.table th, table td {
+    border-color: rgba(255,255,255,.2) !important;
+}
+    .table tr {
+        border-radius: 15px;
+    }
+.table tr:hover {
+    background-color: rgba(255, 255, 255, .2);
+}
+
+
+
+
+.informer {
+    font-style: italic;
+    color: rgba(0, 0, 0, .6);
+}
+
+.informer:hover {
+    color: rgba(0, 0, 0, 1);
+}
+
+.nav-link {
+    opacity: 0.4;
+    transition: .1s
+}
+.nav-link:hover {
+    opacity: 1;
+}
+.login {
+    display: flex;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+/*DROPDOWN*/
+
+#dropdown-nav {
+    list-style: none;
+    float: left;
+}
+
+.dropbtn {
+    color: white;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.dropdown {
+    margin: auto;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: linear-gradient(145deg, #5800ae, #4a0093);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.dropdown-content a {
+    color: rgba(255,255,255,.7);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: rgba(255, 255, 255, .1);
+}
+
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+}
+
+/*END DROPDOWN*/
+
+#toggler {
+    display: none;
+}
+
+@media screen and (max-width: 600px) {
+    body {
+        overflow: auto !important;
+    }
+    .navlist-right {
+        opacity: 0;
+        margin-right: 22px !important;
+        display: flex;
+        position: absolute;
+        width: 200px;
+        height: 20px;
+        bottom: 6px;
+        transition: .3s;
+    }
+
+    #toggler {
+        position: absolute;
+        display: block;
+        height: 32px;
+        width: 32px;
+        padding-left: 0px !important;
+        padding: 0px !important;
+        right: 20px;
+        top: 30px;
+    }
+    .card {
+        overflow: hidden;
+        box-shadow: 0px 0px 0px #3d0079 !important;
+        background-color: rgba(255,255,255,0) !important;
+        border-color: rgba(255,255,255,0) !important;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    .nav-card {
+        margin-left: 75px;
+        margin-right: auto; 
+        transition: .3s;
+    }
+    .table th {
+        text-overflow: clip;
+        font-size: 1rem;
+        max-width: 75px;
+    }
+
+    .container {
+        overflow: auto;
+        width: 100%;
+    }
+    .table {
+        width: 90%;
+        margin-bottom: 30px;
+    }
+    .login {
+        width: auto;
+        opacity: 0.4;
+        display: flex;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        margin-left: 100px;
+        margin-top: -34px;
+        padding-bottom: 0px;
+        list-style: none;
+    }
+    .login:hover {
+        opacity: 1;
+    }
+
+    .nav-left {
+    }
+
+    .navlist {
+        transform: translateY(-135px);
+        display: flex;
+        flex-wrap: wrap;
+        overflow: visible;
+        transition: .3s;
+    }
+    .nav-toggle {
+        transform: translateY(-10px);
+        display: flex;
+        flex-wrap: wrap;
+        overflow: visible;
+    }
+    .navlist li {
+        background: rgba(255,255,255,0);
+        border: 1px solid rgba(255,255,255,0);
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, .2);
+        padding-left: 3px !important;
+        padding: 5px !important;
+        margin: 3px;
+        margin-left: 5px;
+        max-width: 80px;
+        width: 80px;
+        max-height: 32px;
+        overflow: hidden;
+        justify-content: center;
+        border-radius: 15px;
+    }
+    .navhead-brand {
+        position: absolute;
+        top: 20px;
+    }
+
+    .nav-toggle .dropli {
+        overflow: visible !important;
+        padding-left: auto;
+    }
+    .nav-link {
+        padding: 1px;
+        padding-left: 25px;
+    }
+
+        .nav-toggle a {
+            text-overflow: clip;
+            padding-top: 0;
+        }
+    .navcon-toggle {
+        height: 200px !important;
+    }
+    .navcon-toggle .navhead-brand {
+        margin-top: 0px;
+    }
+        .navcon-toggle .navlist-right {
+            opacity: 1;
+            display: flex;
+            position: absolute;
+            width: 200px;
+            height: 20px;
+            bottom: 6px;
+        }
+
+    .card-toggle {
+        overflow: visible;
+        box-shadow: 20px 20px 25px #3d0079 !important;
+        background-color: rgba(255,255,255,.05) !important;
+        border-color: rgba(255,255,255,.1) !important;
+    }
+
+    .dropdown-content {
+        margin-top: 5px;
+    }
+}

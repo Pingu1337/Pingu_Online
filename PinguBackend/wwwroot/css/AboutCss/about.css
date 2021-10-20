@@ -1,0 +1,163 @@
+﻿
+#aboutpage p {
+    color: rgba(255, 255, 255, .8);
+    font-size: 1.1rem;
+}
+
+#aboutservices {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    max-width: 33%;
+    border-left: 1px solid rgba(255, 255, 255, .1);
+    border-right: 1px solid rgba(255, 255, 255, .1);
+    padding: 0 15px 0 15px;
+}
+
+#aboutservices ul {
+
+    text-align: left;
+    list-style: disc;
+}
+#aboutservices li {
+    color: rgba(255, 255, 255, .7);
+    font-size: 1.1rem;
+}
+
+
+.aboutcontent {
+    padding: 20px;
+    display: flex;
+    justify-content: space-evenly;
+}
+#aboutleft {
+    max-width: 33%;
+}
+#aboutright {
+    max-width: 33%;
+}
+
+#aboutskills {
+    display: block;
+}
+.list-container {
+    display: flex;
+    justify-content: space-evenly;
+    
+}
+.listofskills p {
+    
+    margin-left: 5px;
+}
+
+.listofskills {
+    padding: 0px 10px;
+    border-left: 1px solid rgba(255, 255, 255, .1);
+    border-collapse: collapse;
+}
+
+#aboutright {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#aboutright ul {
+    text-align: left;
+    list-style: disc;
+}
+
+#aboutright li {
+    color: rgba(255, 255, 255, .7);
+    font-size: 1.1rem;
+}
+
+#social-links {
+    display: flex;
+
+}
+#social-links i {
+    color: rgba(255, 255, 255, .5);
+    padding: 10px;
+    cursor: pointer;
+    transition: .3s;
+}
+#social-links i:hover {
+    color: rgba(255, 255, 255, .9);
+}
+
+#contactpage {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}
+#contact {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, .7);
+}
+.contact-link {
+    display: flex;
+    margin-left: 20%;
+    margin-right: auto;
+}
+.contact-link p {
+    text-align: center;
+    margin-left: 15px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+@media screen and (max-width: 600px) {
+
+    #contact {
+        overflow: hidden;
+        max-height: 100%;
+    }
+
+    .contact-link {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .aboutcontent {
+        flex-direction: column;
+    }
+    #aboutleft h3 {
+        margin-top: 20px !important;
+    }
+    #social-links {
+        margin-top: 10px !important;
+    }
+    #aboutleft {
+        
+        max-width: 100%;
+    }
+    #aboutservices {
+        margin-top: 30px;
+        max-width: 100%;
+        border-left-color: rgba(255, 255, 255, 0);
+        border-right-color: rgba(255, 255, 255, 0);
+        border-bottom: 1px solid rgba(255, 255, 255, .1);
+        border-top: 1px solid rgba(255, 255, 255, .1);
+        padding-top: 20px;
+    }
+    #aboutright {
+        margin-top: 30px;
+        max-width: 100%;
+    }
+    .list-container {
+        flex-direction: column;
+    }
+    .listofskills {
+        border-top: 1px solid rgba(255, 255, 255, .1);
+        border-right: 1px solid rgba(255, 255, 255, .1);
+    }
+    #aboutskills {
+        border-bottom: 1px solid rgba(255, 255, 255, .1);
+    }
+    #social-links {
+        margin-left: auto !important; 
+    }
+}

@@ -1,0 +1,41 @@
+﻿@page
+@model PinguBackend.Pages.Styles.IndexModel
+
+@{
+    ViewData["Title"] = "Styles";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/AboutCss/about.css" />
+</head>
+
+<div id="template-template-page">
+    <h1 style="margin-top: 15px;">@ViewData["Title"]</h1>
+    <p style="margin-top: 15px;">More info coming soon are coming soon...</p>
+    <hr style="max-width: 500px;" />
+    <p style="margin-top: 30px; max-width: 400px; margin-left: auto; margin-right: auto;"> <a class="content-link" asp-page="/Index">Home Page</a></p>
+
+</div>
+
+<div style="display: flex; flex-direction: column; ">
+    <h3 style="color: rgba(255, 255, 255, .7); margin-top: 50px; text-align: center;">Social Links</h3>
+    <div id="social-links" style="margin-top: 30px; margin: auto; ">
+        <a href="https://github.com/Pingu1337" target="_blank"><i class="fab fa-github fa-3x"></i></a>
+        <a href="https://twitter.com/PinguOnl" target="_blank"> <i class="fab fa-twitter fa-3x"></i></a>
+        <a href="https://www.linkedin.com/in/herman-brunberg-ab4123223" target="_blank"><i class="fab fa-linkedin fa-3x"></i></a>
+        <a href="mailto:contact@pingu.onl" target="_blank"><i class="far fa-envelope fa-3x"></i></a>
+    </div>
+</div>
+
+
+<style>
+
+    #template-template-page {
+        text-align: center;
+        color: rgba(255, 255, 255, .7);
+    }
+
+        #template-template-page p {
+            font-size: 1.1rem;
+        }
+</style>

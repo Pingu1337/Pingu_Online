@@ -1,0 +1,75 @@
+﻿@page
+@using Microsoft.AspNetCore.Identity
+@using xPingu.SharedLib.UserData.Data
+@model PinguBackend.Pages.WarcraftDB.IndexModel
+@inject UserManager<PinguUser> UserManager
+@{
+    ViewData["Title"] = "Warcraft Stockboard";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1 style="margin: 10px; color: rgba(255,255,255,.7)">World of Warcraft Stockboard</h1>
+
+@if (User.IsInRole("admin"))
+{
+    <p>
+        <a style="margin-left: 10px;" class="content-link" asp-page="Create">Create New</a>
+    </p>
+}
+
+<div style="overflow-x: auto; ">
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @*@Html.DisplayNameFor(model => model.wowDBitems[0].itemName)*@
+            item
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.wowDBitems[0].minBuyout)*@
+            price
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.wowDBitems[0].itemID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.wowDBitems[0].oldPrice)
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.wowDBitems[0].lastUpdated)*@
+            updated
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.wowDBitems) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.itemName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.minBuyout)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.itemID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.oldPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lastUpdated)
+        </td>
+        <td>
+            @if (User.IsInRole("admin"))
+            {
+                <a class="content-link" asp-page="./Edit" asp-route-id="@item.itemName">Edit</a>
+                <a class="content-link" asp-page="./Delete" asp-route-id="@item.itemName">Delete</a>
+            }
+            <a class="content-link" asp-page="./Details" asp-route-id="@item.itemName">Details</a>
+        </td>
+    </tr>
+}
+    </tbody>
+</table>
+</div>
